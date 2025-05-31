@@ -1,0 +1,25 @@
+extends layout 
+
+block main-content 
+
+    h1 #{artwork.title}
+    if artwork.artist_title
+        h2 By #{artwork.artist_title}
+    else 
+        h2 By #{artwork.artist_display}
+    .art-content
+        if artwork.thumbnail && artwork.thumbnail.alt_text && artwork.image_id
+            img(src=`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg` alt=artwork.thumbnail.alt_text)
+        else
+            img(src="/img/noImage.png" alt="No description/image available")
+        .art-info 
+            p #{artwork.date_qualifier_title} #{artwork.date_display} 
+            p Place of origin: #{artwork.place_of_origin}
+            p Medium: #{artwork.medium_display}
+            div !{artwork.description}
+            p Dimensions: #{artwork.dimensions}
+    .fact-content
+        h3 What was happening in #{artwork.date_end}?
+        ul.facts 
+            each f in yearFacts 
+                li #{f.event}

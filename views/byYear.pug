@@ -1,0 +1,12 @@
+extends layout 
+block variables
+
+block main-content 
+
+	h1 Browse Artworks By Year 
+	form(role="form" method="POST" action="/byYear/submit/")#year-form
+		label(for="year") Enter Year:
+		input(type="number" name="year")
+		button(type="submit") Find Art!
+	
+	block yearly-content

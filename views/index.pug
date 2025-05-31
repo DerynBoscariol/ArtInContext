@@ -1,0 +1,22 @@
+extends layout 
+
+block main-content 
+
+  h1 Welcome to Art in Context!
+  p#tag-line Explore the artworks from the Art Institute of Chicago below and read historical facts from the year each piece was created to help put yourself deeper into the mind of the artists.
+
+  ul.art-list 
+    each a in artworks
+      - var image = "https://www.artic.edu/iiif/2/" + a.image_id + "/full/843,/0/default.jpg"
+      li.art-box
+        a(href=`/details/${a.id}/${a.date_end}`)
+          if a.artist_title
+            p #{a.title} by #{a.artist_title}
+          else
+            p #{a.title} by #{a.artist_display}
+          if a.thumbnail && a.thumbnail.alt_text && a.image_id
+            img(src=image, alt=a.thumbnail.alt_text)
+          else
+            img(src="/img/noImage.png", alt="No description/image available")
+          p #{a.date_qualifier_title} #{a.date_display}
+  
