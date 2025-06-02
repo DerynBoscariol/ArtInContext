@@ -2,7 +2,7 @@
 const express = require("express");
 const path = require("path");
 
-const art = require("./modules/Art/api"); 
+const art = require("./modules/art/api"); 
 const facts = require("./modules/facts/api");
 
 const app = express();
